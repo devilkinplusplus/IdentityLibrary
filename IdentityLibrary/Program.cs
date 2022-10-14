@@ -12,7 +12,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddIdentity<AppUser, AppRole>().
+builder.Services.AddIdentity<AppUser, AppRole>(opt =>
+{
+    opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequireUppercase = false;
+}).
     AddEntityFrameworkStores<AppDbContext>();
 
 var app = builder.Build();

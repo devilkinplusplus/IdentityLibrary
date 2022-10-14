@@ -1,0 +1,24 @@
+﻿@using IdentityLibrary.Models
+@model UserSigninVM
+
+<form asp-action="Signin" method="post" asp-controller="Login" class="form-group">
+  
+    <div class="mb-3">
+        <label>Email</label>
+        <input type="text" class="form-control" asp-for="@Model.Username"
+               autocomplete="off" />
+    </div>
+    <div class="mb-3">
+        <label>Password</label>
+        <input type="password" class="form-control" asp-for="@Model.Password"
+               autocomplete="off" />
+    </div>
+    
+
+    <button type="submit" class="btn btn-primary">
+        Sign In
+    </button>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger lead">
+    </div>
+</form>
