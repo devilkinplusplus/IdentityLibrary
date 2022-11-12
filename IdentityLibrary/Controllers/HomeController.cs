@@ -1,5 +1,6 @@
 ﻿using IdentityLibrary.Entities;
 using IdentityLibrary.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,11 +15,12 @@ namespace IdentityLibrary.Controllers
             this.userManager = userManager;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
-        
+
         public IActionResult Create()
         {
             return View(new UserCreateVM());
@@ -31,11 +33,11 @@ namespace IdentityLibrary.Controllers
             {
                 AppUser user = new()
                 {
-                    UserName=model.Username,
-                    Email=model.Email,
-                    Gender=model.Gender,
+                    UserName = model.Username,
+                    Email = model.Email,
+                    Gender = model.Gender,
                 };
-                var identityResult= await userManager.CreateAsync(user, model.Password);
+                var identityResult = await userManager.CreateAsync(user, model.Password);
                 if (identityResult.Succeeded)
                 {
                     return RedirectToAction("Index");

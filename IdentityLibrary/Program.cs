@@ -34,8 +34,7 @@ app.UseStaticFiles(new StaticFileOptions
 });
 
 app.UseStaticFiles();
-
-app.MapDefaultControllerRoute();
+app.MapControllerRoute("auth", "{controller=Home}/{action=Create}/{id?}");
 app.UseAuthentication();
 app.UseAuthorization();
 
